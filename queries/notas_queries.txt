@@ -1,0 +1,53 @@
+EXPLICACION QUERIES
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## sp_tiempo
+
+Este script SQL crea una tabla de dimensión de tiempo que se utiliza en un Data Warehouse. La tabla de dimensión de tiempo contiene fechas y sus componentes individuales 
+(día, mes, año, trimestre, semestre, día de la semana, nombre del día, semana del año, y día del año).
+
+	1. Definir Rango de Fechas: El script primero determina el rango de fechas obteniendo la fecha mínima y máxima de dos tablas de facturación (int_billing_hist_G15 y int_billing_G15).
+
+	2. Generar Fechas: Utiliza una CTE (Common Table Expression) llamada Fechas para generar todas las fechas dentro del rango determinado.
+
+	3. Crear Tabla de Dimensión de Tiempo: Selecciona las fechas generadas y las transforma en varios componentes temporales, almacenándolas en una nueva tabla dim_time_2024_G15.
+
+	4. Procedimiento Almacenado: Define un procedimiento almacenado llamado stored_procedure_int_tiempo_15 que puede ser reutilizado para poblar la tabla de dimensión de tiempo con un rango de fechas dado.
+
+	5. Ejecución desde SSIS: Finalmente, se muestra cómo ejecutar este procedimiento almacenado desde SSIS (SQL Server Integration Services), limpiando la tabla y volviendo a poblarla con las fechas actualizadas.
+
+Esta tabla de dimensión de tiempo es esencial para realizar análisis temporales detallados en un Data Warehouse.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## crear dimensiones
+
+Este script SQL crea un conjunto de tablas para el Data Warehouse. Cada tabla tiene un propósito específico dentro del contexto del negocio:
+
+	Tabla Dimensiones Tiempo: Contiene información temporal desglosada por día, mes, año, trimestre, semestre, día de la semana, etc.
+
+	Tabla Dimensiones Regiones: Almacena información geográfica como código postal, zona, estado y ciudad.
+
+	Tabla Dimensiones Empleado: Guarda detalles de los empleados como nombre, género, categoría laboral, fechas de ingreso y nacimiento, y nivel educativo.
+
+	Tabla Dimensiones Producto: Describe los productos con su capacidad y unidad de medida.
+
+	Tabla Dimensiones Cliente: Contiene datos de los clientes incluyendo tipo de cliente, nombre, fecha de nacimiento, ubicación y código postal, con una referencia a la tabla de regiones.
+
+	Tabla Hecho Ventas: Registra transacciones de ventas incluyendo detalles como ID de facturación, fecha de venta, referencias a clientes, empleados, productos y tiempo, cantidad y precio.
+
+Estas tablas forman la estructura base para almacenar datos empresariales y facilitar análisis detallados mediante consultas y visualizaciones en herramientas como Power BI.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## cargar fact
+
+1. Crear y Usar una Tabla Temporal de Precios (#PRICE):
+
+	Borra la tabla temporal #PRICE si ya existe.
+	Crea una nueva tabla temporal #PRICE que almacena precios de productos (PRODUCT_ID) desde una fuente de datos (staging.dbo.stg_prices_G15).
+	Utiliza la función LEAD para obtener la fecha siguiente (FechaHasta) para cada producto, ordenado por fecha (DATE).
+
+2. Insertar Datos en una Tabla de Hechos (fact_sales_G15):
+
+	Inserta datos en la tabla de hechos fact_sales_G15, que registra ventas con detalles como cliente, empleado, producto y fecha.
+	La primera parte del SELECT obtiene datos de una tabla de historial de facturación (intermedia.dbo.int_billing_hist_G15), vinculándolos con la tabla temporal #PRICE para obtener precios correspondientes al momento de la venta.
+	La segunda parte del UNION ALL realiza una operación similar para datos provenientes de una base de datos MySQL (intermedia.dbo.int_billing_G15 y staging.dbo.stg_billing_detail_G15), también utilizando la tabla temporal #PRICE para los precios.
