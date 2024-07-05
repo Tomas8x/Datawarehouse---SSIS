@@ -57,35 +57,35 @@ Se crearon diversas visualizaciones en Power BI para representar los insights ob
 
 ### Crear Bases de Datos:
 
-1. Crear las bases de datos Staging, Intermedia y DataWarehouse en SQL Server.
+- Crear las bases de datos Staging, Intermedia y DataWarehouse en SQL Server.
 
 ### Abrir archivo de Visual Studio:
 
-1. En la carpeta `Datawarehouse.rar` se encuentran todos los archivos necesarios.
+- En la carpeta `Datawarehouse.rar` se encuentran todos los archivos necesarios.
 
 ### Cargar Datos en Staging:
 
-1. Desde Visual Studio, ejecutar el contenedor `Staging` para importar los datos crudos desde todas las fuentes a la base de datos Staging.
+- Desde Visual Studio, ejecutar el contenedor `Staging` para importar los datos crudos desde todas las fuentes a la base de datos Staging.
 
 ### Limpiar y Modificar Datos:
 
-1. Desde Visual Studio, ejecutar el contenedor `Intermedia` que realiza la limpieza y transformación de datos.
+- Desde Visual Studio, ejecutar el contenedor `Intermedia` que realiza la limpieza y transformación de datos.
 
 ### Crear Dimensión Tiempo:
 
-1. Ejecutar el script `sp_tiempo` en la base de datos Intermedia.
+- Ejecutar el script `sp_tiempo` en la base de datos Intermedia.
 
 ### Crear Dimensiones y Tabla de Hechos:
 
-1. Ejecutar el script `creates.sql` que se encuentra en el repositorio para crear las dimensiones y la tabla de hechos.
+- Ejecutar el script `creates.sql` que se encuentra en el repositorio para crear las dimensiones y la tabla de hechos.
 
 ### Cargar Datos en DataWarehouse:
 
-1. Desde Visual Studio, ejecutar el contenedor `DataWarehouse` que realiza la carga de las dimensiones y matchea datos con la tabla de hechos.
+- Desde Visual Studio, ejecutar el contenedor `DataWarehouse` que realiza la carga de las dimensiones y matchea datos con la tabla de hechos.
 
 ### Crear Visualizaciones en Power BI:
 
-1. Importar las vistas SQL a Power BI y crear las visualizaciones necesarias para analizar los datos.
+- Importar las vistas SQL a Power BI y crear las visualizaciones necesarias para analizar los datos.
 
 ## Visualización en Visual Studio
 
