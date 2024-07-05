@@ -47,7 +47,7 @@ Se respondieron ciertas preguntas que se pueden observar en el PDF llamado `TP F
 
 Se crearon diversas visualizaciones en Power BI para representar los insights obtenidos del análisis de datos. Aquí puedes ver un ejemplo de las visualizaciones realizadas:
 
-![Dashboard Power BI](ruta_a_la_imagen)
+![Dashboard Power BI](https://github.com/Tomas8x/Datawarehouse---SSIS/blob/main/Dashboard/Dashboard.pdf)
 
 ## Cómo Ejecutar el Proyecto
 
