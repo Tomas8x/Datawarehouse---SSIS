@@ -61,15 +61,15 @@ Se crearon diversas visualizaciones en Power BI para representar los insights ob
 
 ### Abrir archivo de Visual Studio:
 
-1. En la carpeta `VisualStudio-IntegrationServices` se encuentra el archivo `Stg-Int-DW.dtsw` que se debe ejecutar.
+1. En la carpeta `Datawarehouse.rar` se encuentran todos los archivos necesarios.
 
 ### Cargar Datos en Staging:
 
-1. Desde Visual Studio, ejecutar el contenedor `Carga BD Staging` para importar los datos crudos desde todas las fuentes a la base de datos Staging.
+1. Desde Visual Studio, ejecutar el contenedor `Staging` para importar los datos crudos desde todas las fuentes a la base de datos Staging.
 
 ### Limpiar y Modificar Datos:
 
-1. Desde Visual Studio, ejecutar el contenedor `Carga BD Intermedia` que realiza la limpieza y transformación de datos.
+1. Desde Visual Studio, ejecutar el contenedor `Intermedia` que realiza la limpieza y transformación de datos.
 
 ### Crear Dimensión Tiempo:
 
@@ -77,11 +77,11 @@ Se crearon diversas visualizaciones en Power BI para representar los insights ob
 
 ### Crear Dimensiones y Tabla de Hechos:
 
-1. Ejecutar el script `DIM_Y_FACT.sql` que se encuentra en el repositorio para crear las dimensiones y la tabla de hechos.
+1. Ejecutar el script `creates.sql` que se encuentra en el repositorio para crear las dimensiones y la tabla de hechos.
 
 ### Cargar Datos en DataWarehouse:
 
-1. Desde Visual Studio, ejecutar el contenedor `Carga BD DataWarehouse` que realiza la carga de las dimensiones y matchea datos con la tabla de hechos.
+1. Desde Visual Studio, ejecutar el contenedor `DataWarehouse` que realiza la carga de las dimensiones y matchea datos con la tabla de hechos.
 
 ### Crear Visualizaciones en Power BI:
 
